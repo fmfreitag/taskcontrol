@@ -1,0 +1,29 @@
+version: '3.8'
+services:  
+  frontend:    
+    build:      
+      context: ./frontend/atividades-crud   
+    ports:       
+      - "3000:3000"    
+  backend:    
+    build:      
+      context: ./backend    
+    ports:      
+      - "8080:8080"    
+    environment:      
+      - SPRING_DATASOURCE_URL=jdbc:oracle:thin:@oracle:1521:xe?oracle.jdbc.timezoneAsRegion=false    
+      - SPRING_DATASOURCE_USERNAME=system      
+      - SPRING_DATASOURCE_PASSWORD=oracle    
+    depends_on:      
+      - oracle  
+  oracle:    
+    image: oracleinanutshell/oracle-xe-11g    
+    ports:      
+    - "1521:1521"   
+    environment:      
+      - ORACLE_ALLOW_REMOTE=true      
+      - ORACLE_PASSWORD=oracle   
+    volumes:
+      - oracle-data:/opt/oracle/oradata
+volumes:
+  oracle-data:
