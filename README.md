@@ -24,4 +24,4 @@ obs.: Somente execute o passo 9 apos aparecer a mensagem "oracle-1  | System alt
 
 Para acessar a aplicação frontend: http://localhost:3000
 
-Para acessar a docuentação da API: http://localhost:8080/swagger-ui.html
+Para acessar a documentação da API: http://localhost:8080/swagger-ui.html
