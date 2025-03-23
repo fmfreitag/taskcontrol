@@ -1,5 +1,13 @@
-version: '3.8'
 services:  
+  oracle:    
+    image: oracleinanutshell/oracle-xe-11g    
+    ports:      
+    - "1521:1521"   
+    environment:      
+      - ORACLE_ALLOW_REMOTE=true      
+      - ORACLE_PASSWORD=oracle   
+    volumes:
+      - oracle-data:/opt/oracle/oradata
   frontend:    
     build:      
       context: ./frontend/atividades-crud   
@@ -15,15 +23,7 @@ services:
       - SPRING_DATASOURCE_USERNAME=system      
       - SPRING_DATASOURCE_PASSWORD=oracle    
     depends_on:      
-      - oracle  
-  oracle:    
-    image: oracleinanutshell/oracle-xe-11g    
-    ports:      
-    - "1521:1521"   
-    environment:      
-      - ORACLE_ALLOW_REMOTE=true      
-      - ORACLE_PASSWORD=oracle   
-    volumes:
-      - oracle-data:/opt/oracle/oradata
+      - oracle
+   
 volumes:
   oracle-data:
